@@ -3,9 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-  branches:
-    include:
-    - master
+  - master
 
 resources:
 - repo: self
@@ -22,10 +20,10 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Build docker image
+- stage: Build
+  displayName: 'Release production'
   jobs:    
   - job: Build
-    displayName: 'Release production'
     pool:
       vmImage: $(vmImageName)
     steps:
