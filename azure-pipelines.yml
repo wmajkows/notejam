@@ -3,7 +3,9 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
+  branches:
+    include:
+    - master
 
 resources:
 - repo: self
@@ -20,9 +22,15 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Build
-  displayName: Build, push and deploy
+- stage: Build docker image
   jobs:  
+  - job: Setup
+    - bash: |
+        echo Branch: $(Build.SourceBranchName) | sed 's/\([^-]*\).*/\1/'
+        echo Slot name: $(echo "$(Build.SourceBranchName)" | sed 's/\([^-]*\).*/\1/')
+        echo "##vso[task.setvariable variable=name;isOutput=true]$(echo $(Build.SourceBranchName) | sed 's/\([^-]*\).*/\1/')"
+      name: slot
+      displayName: 'Determine slot name'  
   - job: Build
     pool:
       vmImage: $(vmImageName)
@@ -45,5 +53,4 @@ stages:
         WebAppName: 'notejam'
         DockerNamespace: 'notejamregistry.azurecr.io'
         DockerRepository: 'wmajkowsnotejam'
-        DockerImageTag: $(Build.BuildId)   
-        
+        DockerImageTag: $(Build.BuildId)
