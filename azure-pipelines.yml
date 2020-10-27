@@ -23,15 +23,9 @@ variables:
 
 stages:
 - stage: Build docker image
-  jobs:  
-  - job: Setup
-    - bash: |
-        echo Branch: $(Build.SourceBranchName) | sed 's/\([^-]*\).*/\1/'
-        echo Slot name: $(echo "$(Build.SourceBranchName)" | sed 's/\([^-]*\).*/\1/')
-        echo "##vso[task.setvariable variable=name;isOutput=true]$(echo $(Build.SourceBranchName) | sed 's/\([^-]*\).*/\1/')"
-      name: slot
-      displayName: 'Determine slot name'  
+  jobs:    
   - job: Build
+    displayName: 'Release production'
     pool:
       vmImage: $(vmImageName)
     steps:
