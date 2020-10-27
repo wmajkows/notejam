@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'd9c46ae9-e21f-46f6-a7bc-21b77d7d98eb'
+  dockerRegistryServiceConnection: '7f954aae-bf70-4075-9e86-7bb25fa5c434'
   imageRepository: 'wmajkowsnotejam'
   containerRegistry: 'notejamregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/django/Dockerfile'
