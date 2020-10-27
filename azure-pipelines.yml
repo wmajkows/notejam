@@ -38,6 +38,7 @@ stages:
         tags: |
           $(tag)
   - job: Deploy
+    dependsOn: Build
     displayName: 'Deploy artifacts'
     pool:
       vmImage: $(vmImageName)
