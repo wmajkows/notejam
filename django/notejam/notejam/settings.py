@@ -14,13 +14,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'notejam.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'notejam',
+       'USER': 'notejamadmin@notejam',
+       'PASSWORD': 'Buip4ali',
+       'HOST': 'notejam.postgres.database.azure.com',
+       'PORT': '5432',
     }
+
 }
 
 # Local time zone for this installation. Choices can be found here:
